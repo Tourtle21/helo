@@ -18,6 +18,10 @@ class Dashboard extends Component {
         this.searchPosts();
     }
 
+    componentDidUpdate(prevProps) {
+        console.log(prevProps.posts, this.props.posts)
+    }
+
     resetPosts = () => {
         axios.get(`api/posts/${this.props.id}`, {userposts: this.state.checkMyPost})
         .then(res => this.setState({posts:res.data, searchInput:''}))

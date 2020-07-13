@@ -21,7 +21,7 @@ module.exports = {
                 results = await db.get_all_other({id});
             }
         }
-
+        console.log(results);
         return res.status(200).send(results);
     },
     getPost: async (req, res) => {
@@ -45,8 +45,8 @@ module.exports = {
 
         const db = req.app.get('db');
 
-        const updatedList = db.delete_post({id});
-
+        const updatedList = await db.delete_post({id});
+        console.log(updatedList)
         res.status(200).send(updatedList);
     }
 }

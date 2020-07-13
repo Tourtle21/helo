@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-
+import {updatePosts} from '../../ducks/reducer';
+import {Link} from 'react-router-dom';
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -23,8 +24,15 @@ class Post extends Component {
         })
     }
 
+    deletePost = (id) => {
+        axios.delete(`api/posts/${id}`)
+        .then(res => {
+            this.props.updatePosts(res.data)
+        })
+    }
+
     render() {
-        const {title, img, content, username, profile_pic, author_id} = this.state;
+        const {id, title, img, content, username, profile_pic, author_id} = this.state;
         return (
             <div id='post'>
                 <section className='single-post'>
@@ -36,7 +44,7 @@ class Post extends Component {
                         <img className='author-profile' src={profile_pic} />
                         <p>{username}</p>
                         <p>{content}</p>
-                        {author_id = this.props.id ? <button>Delete</button> : null}
+                        {author_id === this.props.id ? <Link to='/dashboard'><button onClick={() => this.deletePost(id)}>Delete</button></Link> : null}
                     </div>
                 </section>
             </div>
@@ -45,4 +53,4 @@ class Post extends Component {
 }
 
 const mapStateToProps = reduxStore => reduxStore;
-export default connect(mapStateToProps)(Post);
+export default connect(mapStateToProps, {updatePosts})(Post);
