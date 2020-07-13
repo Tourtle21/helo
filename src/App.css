@@ -1,38 +1,206 @@
-.App {
-  text-align: center;
+#auth {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(to right, #FF70A6, #FF9770, #FFD670, #E9FF70);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-form {
+  height: 55%;
+  width: 35%;
+  background-image: linear-gradient(to right, #ff7970, #FFD670);
+  box-shadow: 0px 7px 10px 2px rgba(0, 0, 0, 0.486);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  padding: 20px;
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.title {
+  margin: 10px;
+  font-size: 5em;
+}
+.login-input input{
+  outline: none;
+}
+.login-buttons button {
+  color: white;
+  background-image: radial-gradient(circle at 50% -46%,#737373,#403d39);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
 }
 
-.App-link {
-  color: #61dafb;
+#nav {
+  display: inline-block;
+  float: left;
+}
+.nav {
+  box-sizing: border-box;
+  padding: 20px 0px;
+  height: 100vh;
+  width: 100px;
+  background-image: linear-gradient(to top, #FF70A6, #FF9770);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 10px 0px black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.profile {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px black;
+  /* margin-bottom: 50px; */
+}
+.dashboard-logo {
+  height: 50px;
+  width: 50px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#form {
+  display: inline-block;
+}
+.profile-username {
+  color: black;
+  margin-bottom: 50px;
+}
+
+
+#dashboard {
+  box-sizing: border-box;
+  height: 100%;
+  width: calc(100vw - 100px);
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+.search-container {
+  box-sizing: border-box;
+  height: 60px;
+  width: 80%;
+  background: white;
+  box-shadow: 0 1px 3px 0 grey;
+  display:flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.search-input {
+  width: 46%;
+  height: 20px;
+}
+.reset-button {
+  color: white;
+  background-image: radial-gradient(circle at 50% -46%,#737373,#403d39);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  font-weight: bold;
+  box-shadow: 0 1px 3px 0 grey;
+}
+.search-button img {
+  position: relative;
+  top: -2px;
+  left: -6px;
+  height: 25px;
+  margin:0;
+}
+.search-button {
+  height: 25px;
+  width: 25px;
+  background-color: #FF9770;
+  outline: none;
+  border: none;
+  cursor:pointer;
+}
+.author-profile {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px black;
+  margin-left: 5px;
+}
+.post-container {
+  box-sizing: border-box;
+  height: 80px;
+  width: 90%;
+  background: white;
+  box-shadow: 0 1px 3px 0 grey;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.post-container div{
+  display: flex;
+  align-items: center;
+}
+.search-posts {
+  box-sizing: border-box;
+  width: 80%;
+  background: white;
+  box-shadow: 0 1px 3px 0 grey;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+#post {
+  box-sizing: border-box;
+  height: 100%;
+  width: calc(100vw - 100px);
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+.single-post {
+  box-sizing: border-box;
+  height: 50vh;
+  width: 80%;
+  background: white;
+  box-shadow: 0 1px 3px 0 grey;
+  display:flex;
+  align-items: flex-start;
+  padding: 10px;
+}
+.post-image {
+  width: 100%;
+}
+.post-sections {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.post-sections h1 {
+  color: #FF9770;
+}
+.profile-section {
+  justify-content: flex-start;
 }
