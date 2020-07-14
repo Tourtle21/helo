@@ -43,7 +43,7 @@ class Form extends Component {
                     <h1>New Post</h1>
                     <p>Title:</p>
                     <input onChange={(e) => this.handleInput(e.target.value, 'title')} value={title} />
-                    <img className='form-img' onError={(e) => this.updateImg(e.target)} src={this.state.img} alt='' />
+                    <img className='form-img' onError={(e) => this.updateImg(e.target)} src={img} alt='' />
                     <p>Image URL:</p>
                     <input onChange={(e) => this.handleInput(e.target.value, 'img')} value={img} />
                     <p>Content:</p>

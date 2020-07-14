@@ -34,14 +34,15 @@ class Nav extends Component {
     }
 
     render() {
+        const {location, profile, username} = this.props;
         return (
             <div id='nav'>
-                {this.props.location.pathname !== '/' ? (
+                {location.pathname !== '/' ? (
 
                     <nav className='nav'>
                         <div className='links'>
-                            <img alt='' className='profile' src={this.props.profile}/>
-                            <p className='profile-username'>{this.props.username}</p>
+                            <img alt='' className='profile' src={profile}/>
+                            <p className='profile-username'>{username}</p>
                             <Link to='/dashboard'><img alt='' className='dashboard-logo' src={House}/></Link>
                             <Link to='/new'><img alt='' className='dashboard-logo' src={FormLogo}/></Link>
                         </div>

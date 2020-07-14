@@ -29,28 +29,27 @@ class Dashboard extends Component {
     }
 
     searchPosts = () => {
-        console.log(this.state.checkMyPost, this.state.searchInput)
         axios.get(`/api/posts?userposts=${this.state.checkMyPost}&search=${this.state.searchInput}`)
-        .then(res => {console.log(res.data); this.setState({posts:res.data})})
+        .then(res => this.setState({posts:res.data}))
         .catch(err => console.log(err));
     }
 
     handleInput = (val, type) => {
-        console.log(val, type)
         this.setState({[type]: val})
     }
 
     render() {
-        const mappedPosts = this.state.posts.map(post => (<Link key={post.id} className='post-container' to={`post/${post.id}`}><h1>{post.title}</h1><div><p>by: {post.username}</p><img alt='' className='author-profile' src={post.profile_pic} /></div></Link>))
+        const {searchInput, checkMyPost, posts} = this.state;
+        const mappedPosts = posts.map(post => (<Link key={post.id} className='post-container' to={`post/${post.id}`}><h1>{post.title}</h1><div><p>by: {post.username}</p><img alt='' className='author-profile' src={post.profile_pic} /></div></Link>))
         return (
             <div id='dashboard'>
                 <section className='search-container'>
-                    <input value={this.state.searchInput} onChange={(e) => this.handleInput(e.target.value, 'searchInput')} placeholder="Search by Title" className='search-input' />
+                    <input value={searchInput} onChange={(e) => this.handleInput(e.target.value, 'searchInput')} placeholder="Search by Title" className='search-input' />
                     <button onClick={this.searchPosts} className='search-button'><img alt='' src={Search} /></button>
                     <button onClick={this.resetPosts} className='reset-button'>Reset</button>
   
                         <p>My Posts:</p>
-                        <input checked={this.state.checkMyPost} onChange={(e) => this.handleInput(e.target.checked, 'checkMyPost')} type='checkbox' />
+                        <input checked={checkMyPost} onChange={(e) => this.handleInput(e.target.checked, 'checkMyPost')} type='checkbox' />
                    
                 </section>
                 <section className='search-posts'>
