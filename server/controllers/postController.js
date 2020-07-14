@@ -2,42 +2,42 @@ const { decodeBase64 } = require("bcryptjs")
 
 module.exports = {
     getFilteredPosts: async (req, res) => {
-        const {userposts, search} = req.body;
-        const {id} = req.params;
+        const {userposts, search} = req.query;
+        const {userid} = req.session;
         const db = req.app.get('db');
+        console.log(userposts, search, userid)
         let results = [];
-        console.log(userposts, search, id)
-        if (userposts) {
+        if (userposts == 'true') {
             if (search) {
-                console.log(search)
                 results = await db.find_title({search});
             } else {
                 results = await db.get_all_posts();
             }
         } else {
+            console.log("THE OTHER ONE")
             if (search) {
-                results = await db.get_all_other_by_title({search, id});
+                results = await db.get_all_other_by_title({search, userid});
             } else {
-                results = await db.get_all_other({id});
+                console.log("THIS ONE")
+                results = await db.get_all_other({userid});
             }
         }
-        console.log(results);
+        console.log(req.session.userid)
         return res.status(200).send(results);
     },
     getPost: async (req, res) => {
         const {id} = req.params;
         const db = req.app.get('db');
-        console.log(id);
         const post = await db.get_post({id});
 
         return res.status(200).send(post[0]);
     },
     createPost: (req, res) => {
-        const {id} = req.params;
+        const {userid} = req.session;
         const {title, img, content} = req.body;
         const db = req.app.get('db');
 
-        db.create_post({id, title, img, content})
+        db.create_post({userid, title, img, content})
         .then(response => res.sendStatus(200));
     },
     deletePost: async (req, res) => {
@@ -46,7 +46,6 @@ module.exports = {
         const db = req.app.get('db');
 
         const updatedList = await db.delete_post({id});
-        console.log(updatedList)
         res.status(200).send(updatedList);
     }
 }

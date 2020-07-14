@@ -16,12 +16,16 @@ class Post extends Component {
     }
 
     componentDidMount = () => {
-        const {postid} = this.props.match.params;
-        axios.get(`/api/post/${postid}`)
-        .then(res => {
-            console.log(res.data)
-            this.setState(res.data)
-        })
+        if (!this.props.username) {
+            this.props.history.push('/');
+        } else {
+            const {postid} = this.props.match.params;
+            axios.get(`/api/posts/${postid}`)
+            .then(res => {
+                console.log(res.data)
+                this.setState(res.data)
+            })
+        }
     }
 
     deletePost = (id) => {
@@ -38,10 +42,10 @@ class Post extends Component {
                 <section className='single-post'>
                     <div className='post-sections'>
                         <h1>{title}</h1>
-                        <img className='post-image' src={img} />
+                        <img alt='' className='post-image' src={img} />
                     </div>
                     <div className='post-sections profile-section'>
-                        <img className='author-profile' src={profile_pic} />
+                        <img alt='' className='author-profile' src={profile_pic} />
                         <p>{username}</p>
                         <p>{content}</p>
                         {author_id === this.props.id ? <Link to='/dashboard'><button onClick={() => this.deletePost(id)}>Delete</button></Link> : null}

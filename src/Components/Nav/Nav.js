@@ -4,24 +4,48 @@ import FormLogo from '../../assets/form.svg'
 import Logout from '../../assets/logout.svg'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {getUser, clearRedux} from '../../ducks/reducer';
+import axios from 'axios';
 class Nav extends Component {
     constructor(props) {
         super(props);
+
+        this.logout = this.logout.bind(this);
+    }
+
+    componentDidMount() {
+        this.logMeIn();
+    }
+
+    logMeIn = () => {
+        axios.get('/auth/me')
+        .then(res => {
+            this.props.getUser(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
+    logout = () => {
+        axios.get('/auth/logout')
+        .then(res => {
+            this.props.clearRedux();
+        }).catch(err => console.log(err))
     }
 
     render() {
         return (
             <div id='nav'>
-                {this.props.location.pathname != '/' ? (
+                {this.props.location.pathname !== '/' ? (
 
                     <nav className='nav'>
                         <div className='links'>
-                            <img className='profile' src={this.props.profile}/>
+                            <img alt='' className='profile' src={this.props.profile}/>
                             <p className='profile-username'>{this.props.username}</p>
-                            <Link to='/dashboard'><img className='dashboard-logo' src={House}/></Link>
-                            <Link to='/new'><img className='dashboard-logo' src={FormLogo}/></Link>
+                            <Link to='/dashboard'><img alt='' className='dashboard-logo' src={House}/></Link>
+                            <Link to='/new'><img alt='' className='dashboard-logo' src={FormLogo}/></Link>
                         </div>
-                        <Link to='/'><img className='dashboard-logo' src={Logout}/></Link>
+                        <Link id='logout' to='/'><img alt='' onClick={this.logout} className='dashboard-logo' src={Logout}/></Link>
                     </nav>
 
                 ) : null}
@@ -32,4 +56,4 @@ class Nav extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, {getUser, clearRedux})(Nav);

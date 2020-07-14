@@ -74,9 +74,6 @@
   flex-direction: column;
   align-items: center;
 }
-#form {
-  display: inline-block;
-}
 .profile-username {
   color: black;
   margin-bottom: 50px;
@@ -180,7 +177,6 @@
 }
 .single-post {
   box-sizing: border-box;
-  height: 50vh;
   width: 80%;
   background: white;
   box-shadow: 0 1px 3px 0 grey;
@@ -194,13 +190,41 @@
 .post-sections {
   display: flex;
   height: 100%;
+  width: 70%;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .post-sections h1 {
   color: #FF9770;
 }
 .profile-section {
   justify-content: flex-start;
+  align-items: flex-end;
+  text-align: center;
+  width: 30%;
+}
+
+#form {
+  box-sizing: border-box;
+  height: 100%;
+  width: calc(100vw - 100px);
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+.form-container {
+  box-sizing: border-box;
+  width: 80%;
+  background: white;
+  box-shadow: 0 1px 3px 0 grey;
+  padding: 10px;
+}
+.form-container h1 {
+  color: #FF9770;
+}
+.form-img {
+  width: 80%;
 }

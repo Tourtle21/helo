@@ -9,7 +9,14 @@ class Form extends Component {
             img: '',
             content: ''
         }
+        this.updateImg = this.updateImg.bind(this);
         this.createPost = this.createPost.bind(this);
+    }
+
+    componentDidMount() {
+        if(!this.props.username) {
+            this.props.history.push('/');
+        }
     }
 
     handleInput(val, type) {
@@ -18,10 +25,14 @@ class Form extends Component {
 
     createPost() {
         const {title, img, content} = this.state;
-        axios.post(`/api/posts/${this.props.id}`, {title, img, content})
+        axios.post(`/api/posts`, {title, img, content})
         .then(res => {
             this.props.history.push('/dashboard');
         })
+    }
+
+    updateImg(target) {
+        target.src = 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg';
     }
 
     render() {
@@ -32,7 +43,7 @@ class Form extends Component {
                     <h1>New Post</h1>
                     <p>Title:</p>
                     <input onChange={(e) => this.handleInput(e.target.value, 'title')} value={title} />
-                    <img src={this.state.img} />
+                    <img className='form-img' onError={(e) => this.updateImg(e.target)} src={this.state.img} alt='' />
                     <p>Image URL:</p>
                     <input onChange={(e) => this.handleInput(e.target.value, 'img')} value={img} />
                     <p>Content:</p>
@@ -44,6 +55,6 @@ class Form extends Component {
     }
 }
 
-const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = reduxStore => reduxStore;
 
 export default connect(mapStateToProps)(Form);
