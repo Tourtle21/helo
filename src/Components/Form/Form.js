@@ -47,8 +47,8 @@ class Form extends Component {
                     <p>Image URL:</p>
                     <input onChange={(e) => this.handleInput(e.target.value, 'img')} value={img} />
                     <p>Content:</p>
-                    <input onChange={(e) => this.handleInput(e.target.value, 'content')} value={content}/>
-                    <button onClick={this.createPost}>Post</button>
+                    <textarea onChange={(e) => this.handleInput(e.target.value, 'content')} value={content}/>
+                    <button className='reset-button new-post-button' onClick={this.createPost}>Post</button>
                 </section>
             </div>
         )
